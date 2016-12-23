@@ -3,6 +3,7 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { AddWeatherPage } from '../pages/add-weather/add-weather';
+import { ForecastPage } from '../pages/forecast/forecast';
 import { TemperaturePipe } from '../pipes/temperature';
 
 
@@ -11,6 +12,7 @@ import { TemperaturePipe } from '../pipes/temperature';
     MyApp,
     HomePage,
     AddWeatherPage,
+    ForecastPage,
     TemperaturePipe
   ],
   imports: [
@@ -20,7 +22,8 @@ import { TemperaturePipe } from '../pipes/temperature';
   entryComponents: [
     MyApp,
     HomePage,
-    AddWeatherPage
+    AddWeatherPage,
+    ForecastPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
 })

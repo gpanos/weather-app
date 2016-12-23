@@ -4,6 +4,7 @@ import { NavController, ModalController } from 'ionic-angular';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import { AddWeatherPage } from '../add-weather/add-weather';
+import { ForecastPage } from '../forecast/forecast';
 import { Weather } from '../../providers/weather';
 
 @Component({
@@ -39,13 +40,12 @@ export class HomePage {
                 this.weatherList.push(data);
             },
             err => console.log(err),
-            () => console.log('getWeather')
+            () => console.log('getWeather success')
         )
     }
     
-    viewForecast(weather){
-        console.log('weather');
-        console.log(weather);
+    viewForecast(cityWeather){
+        this.navCtrl.push(ForecastPage, {cityWeather: cityWeather});
     }
 
 }
