@@ -1,16 +1,23 @@
 import { Component } from '@angular/core';
 import { NavController, ModalController } from 'ionic-angular';
 
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
 import { AddWeatherPage } from '../add-weather/add-weather';
+import { Weather } from '../../providers/weather';
 
 @Component({
     selector: 'page-home',
-    templateUrl: 'home.html'
+    templateUrl: 'home.html',
+    providers: [Weather]
 })
 export class HomePage {
     public weatherList = [];
+    
     constructor(public navCtrl: NavController,
-              public modalCtrl: ModalController) {
+                public modalCtrl: ModalController,
+                public weather: Weather
+          ) {
                   
 
     }
@@ -26,9 +33,19 @@ export class HomePage {
     }
     
     getWeather(city:string, country:string) {
-        // get weather form api
-        // this.weatherList.push(data);
-
+        this.weather.city(city, country)
+            .map(data => data.json())
+            .subscribe(data => {
+                this.weatherList.push(data);
+            },
+            err => console.log(err),
+            () => console.log('getWeather')
+        )
+    }
+    
+    viewForecast(weather){
+        console.log('weather');
+        console.log(weather);
     }
 
 }
