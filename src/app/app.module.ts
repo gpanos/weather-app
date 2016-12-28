@@ -5,6 +5,8 @@ import { HomePage } from '../pages/home/home';
 import { AddWeatherPage } from '../pages/add-weather/add-weather';
 import { ForecastPage } from '../pages/forecast/forecast';
 import { TemperaturePipe } from '../pipes/temperature';
+import { WeatherComponent } from '../components/weather/weather';
+
 
 
 @NgModule({
@@ -13,7 +15,8 @@ import { TemperaturePipe } from '../pipes/temperature';
     HomePage,
     AddWeatherPage,
     ForecastPage,
-    TemperaturePipe
+    TemperaturePipe,
+    WeatherComponent
   ],
   imports: [
     IonicModule.forRoot(MyApp)

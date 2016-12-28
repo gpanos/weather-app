@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 import { NavController, ModalController } from 'ionic-angular';
-
-import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import { AddWeatherPage } from '../add-weather/add-weather';
 import { ForecastPage } from '../forecast/forecast';
@@ -13,14 +11,15 @@ import { Weather } from '../../providers/weather';
     providers: [Weather]
 })
 export class HomePage {
-    public weatherList = [];
+    public weatherList  = [];
+    public localWeather;
     
     constructor(public navCtrl: NavController,
                 public modalCtrl: ModalController,
                 public weather: Weather
           ) {
-                  
-
+              this.getLocalWeather();
+              
     }
   
     addWeather() {
@@ -42,6 +41,12 @@ export class HomePage {
             err => console.log(err),
             () => console.log('getWeather success')
         )
+    }
+    
+    getLocalWeather() {
+        this.weather.local().subscribe(data => {
+            this.localWeather = data;
+        })
     }
     
     viewForecast(cityWeather){
